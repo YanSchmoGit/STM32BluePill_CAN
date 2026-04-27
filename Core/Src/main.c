@@ -28,7 +28,7 @@ int main(void)
     // Init LCD
     LCDSetup();
 
-    LCDSendString("Tja bloed");
+    LCDSendString("Test");
 
 
     while (1)
