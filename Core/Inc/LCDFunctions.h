@@ -44,7 +44,7 @@
 
 #define UsePortExpander true
 
-#define WaitTimeLCDCom ((uint16_t)500)
+#define WaitTimeLCDCom ((uint16_t)1000)
 
 // Define LCD functions
 

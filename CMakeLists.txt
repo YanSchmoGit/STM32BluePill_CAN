@@ -40,7 +40,9 @@ add_executable(${CMAKE_PROJECT_NAME}
         Core/Inc/LCDFunctions.c
         Core/Inc/LCDFunctions.h
         Core/Inc/PortExpander.c
-        Core/Inc/PortExpander.h)
+        Core/Inc/PortExpander.h
+        Core/Inc/CANBus.c
+        Core/Inc/CANBus.h)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
