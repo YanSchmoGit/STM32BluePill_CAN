@@ -12,16 +12,15 @@ typedef struct
 {
     uint32_t id;
     uint8_t dlc;
-    uint8_t data[8];
+    uint32_t value_1;
+    uint32_t value_2;
 } CANMessage;
 
 // Functions
 
 int8_t CanInit();
 
-int8_t CanReceive(CANMessage *msg);
-
-
+int8_t CanReceive(CANMessage* msg);
 
 
 #endif //STM32BLUEPILL_CAN_CANBUS_H

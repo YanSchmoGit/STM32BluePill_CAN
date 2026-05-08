@@ -58,7 +58,6 @@ int8_t InitI2C(GPIO_TypeDef* GPIOxSCL, uint8_t pinSCL, GPIO_TypeDef* GPIOxSDA, u
 
         GPIOxSDA->CRL |= (0x3UL << (pinSDA * 4)); // Set output mode
         GPIOxSDA->CRL |= (0x3UL << ((pinSDA * 4) + 2)); // Set alternate function & open drain
-
     }
     else if (pinSCL >= 8 && pinSDA >= 8)
     {
@@ -73,7 +72,6 @@ int8_t InitI2C(GPIO_TypeDef* GPIOxSCL, uint8_t pinSCL, GPIO_TypeDef* GPIOxSDA, u
     else
     {
         return 1; // Return error
-
     }
 
 
