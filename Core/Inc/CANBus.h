@@ -16,11 +16,26 @@ typedef struct
     uint32_t value_2;
 } CANMessage;
 
+// CAN Control Type Def
+
+typedef struct
+{
+    uint8_t data_ready;
+} CANControl;
+
+
+
+extern volatile CANMessage CAN_Message;
+extern volatile CANControl CAN_Status;
+
 // Functions
 
 int8_t CanInit();
 
-int8_t CanReceive(CANMessage* msg);
+int8_t CanReceive(volatile CANMessage* msg);
+
+// Interrupt handler
+void USB_LP_CAN1_RX0_IRQHandler(void);
 
 
 #endif //STM32BLUEPILL_CAN_CANBUS_H

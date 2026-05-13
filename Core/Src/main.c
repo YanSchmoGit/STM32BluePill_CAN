@@ -11,9 +11,8 @@
 #define I2C_SDA_Pin 7
 #define I2C_SDA_Port GPIOB
 
-CANMessage message;
-
-uint8_t Data_ready = 0;
+//CANMessage message;
+//CANControl CAN;
 
 
 int main(void)
@@ -30,22 +29,18 @@ int main(void)
 
     while (1)
     {
-        if (Data_ready == 1)
+        if (CAN_Status.data_ready)
         {
             LCDSendString("         ");
             LCDSetCursorLocation(0, 0);
-            LCDSendInteger(message.value_1);
+            LCDSendInteger(CAN_Message.value_1);
             LCDSendString(" C");
 
             LCDSetCursorLocation(0, 1);
-            LCDSendInteger(message.value_2);
-            Data_ready = 0;
+            LCDSendInteger(CAN_Message.value_2);
+            CAN_Status.data_ready = 0;
         }
     }
 }
 
-void USB_LP_CAN1_RX0_IRQHandler(void)
-{
-    CanReceive(&message);
-    Data_ready = 1;
-}
+

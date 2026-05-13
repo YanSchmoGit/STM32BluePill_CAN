@@ -6,6 +6,8 @@
 
 #include "stm32f103xb.h"
 
+volatile CANMessage CAN_Message;
+volatile CANControl CAN_Status;
 
 int8_t CanInit()
 {
@@ -79,7 +81,7 @@ int8_t CanInit()
     return 0;
 };
 
-int8_t CanReceive(CANMessage* msg)
+int8_t CanReceive(volatile CANMessage* msg)
 {
     // Check if message s ready
 
@@ -108,4 +110,11 @@ int8_t CanReceive(CANMessage* msg)
     CAN1->RF0R |= CAN_RF0R_RFOM0;
 
     return 1; // Message received
+}
+
+void USB_LP_CAN1_RX0_IRQHandler(void)
+{
+    CanReceive(&CAN_Message);
+    CAN_Status.data_ready = 1;
+
 }
