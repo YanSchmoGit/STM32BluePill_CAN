@@ -32,6 +32,8 @@ extern volatile CANControl CAN_Status;
 
 int8_t CanInit();
 
+int8_t CanFilter(uint16_t id, uint16_t mask);
+
 int8_t CanReceive(volatile CANMessage* msg);
 
 // Interrupt handler
@@ -39,3 +41,4 @@ void USB_LP_CAN1_RX0_IRQHandler(void);
 
 
 #endif //STM32BLUEPILL_CAN_CANBUS_H
+;

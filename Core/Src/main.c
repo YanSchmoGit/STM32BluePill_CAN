@@ -25,6 +25,7 @@ int main(void)
 
     // Init CAN Bus
     CanInit();
+    CanFilter(0x7B, 0x7FF); // Id 123 = hex 0x7B
 
 
     while (1)

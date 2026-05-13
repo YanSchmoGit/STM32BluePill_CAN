@@ -60,19 +60,7 @@ int8_t CanInit()
     // Activate interrupt for pending message
     CAN1->IER |= CAN_IER_FMPIE0;
 
-    // Configure filter
 
-    CAN1->FMR |= CAN_FMR_FINIT; // Init mode for all filter
-    CAN1->FA1R &= ~CAN_FA1R_FACT0; // Deactivate filter 0
-    CAN1->FS1R |= CAN_FS1R_FSC0; // Enable 32-bit scale mode
-    CAN1->FM1R &= ~CAN_FM1R_FBM0; // Identifier mask mode
-
-    CAN1->sFilterRegister[0].FR1 = 0; // Filter id 0 (accept all)
-    CAN1->sFilterRegister[0].FR2 = 0; // Filter mask 0 (accept all)
-
-    CAN1->FFA1R &= ~(CAN_FFA1R_FFA0); // Assign filter 0 to FIFO 0
-    CAN1->FA1R |= CAN_FA1R_FACT0;
-    CAN1->FMR &= ~CAN_FMR_FINIT;
 
     // NVIC Interrupt aktivieren
 
@@ -80,6 +68,25 @@ int8_t CanInit()
 
     return 0;
 };
+
+int8_t CanFilter(uint16_t id, uint16_t mask)
+{
+    // Configure filter
+
+    CAN1->FMR |= CAN_FMR_FINIT; // Init mode for all filter
+    CAN1->FA1R &= ~CAN_FA1R_FACT0; // Deactivate filter 0
+    CAN1->FS1R |= CAN_FS1R_FSC0; // Enable 32-bit scale mode
+    CAN1->FM1R &= ~CAN_FM1R_FBM0; // Identifier mask mode
+
+    CAN1->sFilterRegister[0].FR1 = id << 21; // Filter id  - shift 21 bytes --> Standard ID is used (Bits 21:31)
+    CAN1->sFilterRegister[0].FR2 = mask << 21; // Filter mask - shift 21 bytes --> Standard ID is used (Bits 21:31)
+
+    CAN1->FFA1R &= ~(CAN_FFA1R_FFA0); // Assign filter 0 to FIFO 0
+    CAN1->FA1R |= CAN_FA1R_FACT0;
+    CAN1->FMR &= ~CAN_FMR_FINIT;
+
+    return 1;
+}
 
 int8_t CanReceive(volatile CANMessage* msg)
 {
