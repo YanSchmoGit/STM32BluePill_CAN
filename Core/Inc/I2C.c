@@ -71,7 +71,7 @@ int8_t InitI2C(GPIO_TypeDef* GPIOxSCL, uint8_t pinSCL, GPIO_TypeDef* GPIOxSDA, u
     }
     else
     {
-        return 1; // Return error
+        return 0; // Return error
     }
 
 
@@ -83,7 +83,7 @@ int8_t InitI2C(GPIO_TypeDef* GPIOxSCL, uint8_t pinSCL, GPIO_TypeDef* GPIOxSDA, u
     I2C1->TRISE = 9; // Set TRISE --> 1000ns / T_pclk1 + 1 = 1000ns / 125ns + 1 = 9
     I2C1->CR1 |= I2C_CR1_PE;
 
-    return 0;
+    return 1;
 }
 
 int8_t ReadI2C(uint8_t devAdr, uint8_t regAdr, uint8_t numberOfBytes, uint8_t* data)
@@ -148,7 +148,7 @@ int8_t ReadI2C(uint8_t devAdr, uint8_t regAdr, uint8_t numberOfBytes, uint8_t* d
     };
     *data = I2C1->DR;
 
-    return 0;
+    return 1;
 }
 
 int8_t WriteI2C(uint8_t devAdr, uint8_t regAdr, uint8_t data)
@@ -191,5 +191,5 @@ int8_t WriteI2C(uint8_t devAdr, uint8_t regAdr, uint8_t data)
     // Generate stop condition
     I2C1->CR1 |= I2C_CR1_STOP;
 
-    return 0;
+    return 1;
 }

@@ -11,8 +11,10 @@
 #define I2C_SDA_Pin 7
 #define I2C_SDA_Port GPIOB
 
-//CANMessage message;
-//CANControl CAN;
+#define CAN_ID_BMP280 0x7B // ID 123
+#define CAN_MASK_BMP280 0x7FF
+
+
 
 
 int main(void)
@@ -25,7 +27,7 @@ int main(void)
 
     // Init CAN Bus
     CanInit();
-    CanFilter(0x7B, 0x7FF); // Id 123 = hex 0x7B
+    CanFilter(CAN_ID_BMP280, CAN_MASK_BMP280);
 
 
     while (1)
@@ -39,6 +41,7 @@ int main(void)
 
             LCDSetCursorLocation(0, 1);
             LCDSendInteger(CAN_Message.value_2);
+            LCDSendString(" hPa");
             CAN_Status.data_ready = 0;
         }
     }

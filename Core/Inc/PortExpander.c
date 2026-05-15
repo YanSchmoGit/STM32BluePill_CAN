@@ -17,7 +17,7 @@ int8_t InitPortExpander(uint8_t devAdr)
 
     WriteI2C(devAdr, MCP23017_REGISTER_IOCONB, MCP23017_SEQOP_OFF);
 
-    return 0;
+    return 1;
 };
 
 
@@ -35,7 +35,7 @@ int8_t PortExpanderSetConfig(uint8_t devAdr, PortDef port)
         WriteI2C(devAdr, MCP23017_REGISTER_IODIRB, MCP23017_IODIR_ALL_OUTPUT);
     }
 
-    return 0;
+    return 1;
 };
 
 int8_t PortExpanderWriteOutput(uint8_t devAdr, PortDef port, uint8_t value)
@@ -50,5 +50,5 @@ int8_t PortExpanderWriteOutput(uint8_t devAdr, PortDef port, uint8_t value)
         WriteI2C(devAdr, MCP23017_REGISTER_GPIOB, value);
     }
 
-    return 0;
+    return 1;
 };
