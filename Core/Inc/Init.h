@@ -10,6 +10,8 @@
 
 #include <stm32f1xx.h>
 
-void InitClock();
+int8_t InitClockHSI();
+
+int8_t InitClockHSE();
 
 #endif //NUCLEOL476RG_BMP280_INIT_H
