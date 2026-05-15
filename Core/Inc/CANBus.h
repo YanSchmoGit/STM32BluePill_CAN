@@ -24,7 +24,6 @@ typedef struct
 } CANControl;
 
 
-
 extern volatile CANMessage CAN_Message;
 extern volatile CANControl CAN_Status;
 

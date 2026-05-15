@@ -17,16 +17,16 @@ int8_t CanInit()
 
     // Set GPIOs to alternate function
 
-        // PA 11 - RX Pin
-        // Set to: Input Floating
-        GPIOA->CRH &= ~(GPIO_CRH_CNF11_Msk | GPIO_CRH_MODE11_Msk);
-        GPIOA->CRH |= GPIO_CRH_CNF11_0;
+    // PA 11 - RX Pin
+    // Set to: Input Floating
+    GPIOA->CRH &= ~(GPIO_CRH_CNF11_Msk | GPIO_CRH_MODE11_Msk);
+    GPIOA->CRH |= GPIO_CRH_CNF11_0;
 
 
-        // PA 12 - TX Pin
-        // Set to: Output mode max 50MHz, alternate function, Push-pull
-        GPIOA->CRH &= ~(GPIO_CRH_CNF12_Msk | GPIO_CRH_MODE12_Msk);
-        GPIOA->CRH |= (GPIO_CRH_MODE12_0 | GPIO_CRH_MODE12_1 | GPIO_CRH_CNF12_1);
+    // PA 12 - TX Pin
+    // Set to: Output mode max 50MHz, alternate function, Push-pull
+    GPIOA->CRH &= ~(GPIO_CRH_CNF12_Msk | GPIO_CRH_MODE12_Msk);
+    GPIOA->CRH |= (GPIO_CRH_MODE12_0 | GPIO_CRH_MODE12_1 | GPIO_CRH_CNF12_1);
 
 
     // Init CAN Bus
@@ -121,5 +121,4 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
 {
     CanReceive(&CAN_Message);
     CAN_Status.data_ready = 1;
-
 }
