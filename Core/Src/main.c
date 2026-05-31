@@ -1,3 +1,13 @@
+/*
+* Project CAN Communication - STM32 BluePill
+ * Used Hardware:
+ * STM32F103C8
+ * MCP32017
+ * HM44780U
+ * VP230 CAN Transceiver
+ *
+ */
+
 #include <stdint.h>
 #include <stm32f1xx.h>
 
@@ -11,7 +21,7 @@
 #define I2C_SDA_Pin 7
 #define I2C_SDA_Port GPIOB
 
-#define CAN_ID_BMP280 0x7B // ID 123
+#define CAN_ID_BMP280 0x6F
 #define CAN_MASK_BMP280 0x7FF
 
 
