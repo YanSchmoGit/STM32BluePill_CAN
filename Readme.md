@@ -12,6 +12,7 @@ The primary MCU interfaces with the sensor, processes the raw telemetry, and pac
 For a detailed visual overview of the wiring, signal routing, and system architecture, please refer to the diagram below:
 
 ![System Overview](./ProjectDescription/CANProject_Overview.jpg)
+![System Wiring](./ProjectDescription/ProjectPictureBreadboard.jpeg)
 
 ### Component Breakdown
 * **Microcontrollers:**
