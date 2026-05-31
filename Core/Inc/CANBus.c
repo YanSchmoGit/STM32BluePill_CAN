@@ -60,8 +60,7 @@ int8_t CanInit()
     // Activate interrupt for pending message
     CAN1->IER |= CAN_IER_FMPIE0;
 
-    // NVIC Interrupt aktivieren
-
+    // NVIC Interrupt activate
     NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
 
     return 1;
